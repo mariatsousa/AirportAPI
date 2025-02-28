@@ -4,6 +4,7 @@
  */
 package br.dev.maria.airports.controllers;
 
+import br.dev.maria.airports.DTO.AirportMinDTO;
 import br.dev.maria.airports.entities.Airport;
 import br.dev.maria.airports.service.AirportService;
 import java.util.List;
@@ -54,6 +55,19 @@ public class AirportController {
             // ok devolve 200
             return ResponseEntity.ok(result); 
         }
-        
+    }
+    
+    @GetMapping("/country/{countryName}")
+    public ResponseEntity<List<AirportMinDTO>> FindByCountryIgnoreCase(@PathVariable String countryName) {
+        List<AirportMinDTO> result = airportService.findByCountry(countryName);
+        if (result.isEmpty()) {
+            //Ops.. lista vazia...
+            //notFound devolve 404
+            return ResponseEntity.notFound().build();
+        } else {
+            // Eba Tem dados
+            // ok devolue 200
+            return ResponseEntity.ok(result);
+        }
     }
 }

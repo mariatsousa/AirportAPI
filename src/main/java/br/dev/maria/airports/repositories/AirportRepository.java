@@ -5,6 +5,7 @@
 package br.dev.maria.airports.repositories;
 
 import br.dev.maria.airports.entities.Airport;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -12,5 +13,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author sesidevb
  */
 public interface AirportRepository extends JpaRepository<Airport, Long> {
-    
+    List<Airport> findByCityIgnoreCase (String city);
 }
